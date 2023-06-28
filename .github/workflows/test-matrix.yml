@@ -20,5 +20,6 @@ jobs:
             env: sandbox1 
     steps:
         - name: Dump payload
-          run: echo ${{fromJson(matrix)}}
+          run: |
+            echo ${{ matrix.tenant }}-${{ matrix.aws_region }}-${{ matrix.env }}
       
