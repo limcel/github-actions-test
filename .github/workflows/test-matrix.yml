@@ -1,0 +1,24 @@
+name: Deploy to all sandboxes or prods at once
+
+on:
+  push
+
+jobs:
+  trigger-deploy-to-sandboxes:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        tenant: [mt, ce, ws]
+        aws_region: [us-west-2]
+        env: [sandbox1]
+        include: # https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs#expanding-or-adding-matrix-configurations
+          - tenant: mt
+            aws_region: us-west-2
+            env: sandbox2
+          - tenant: bn
+            aws_region: ap-northeast-1
+            env: sandbox1 
+    steps:
+        - name: Dump payload
+          run: echo ${{fromJson(matrix)}}
+      
