@@ -1,10 +1,10 @@
-name: Deploy to all sandboxes or prods at once
+name: Test Matrix
 
 on:
   push
 
 jobs:
-  trigger-deploy-to-sandboxes:
+  trigger-test-matrix:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
@@ -15,6 +15,9 @@ jobs:
           - tenant: mt
             aws_region: us-west-2
             env: sandbox2
+          - tenant: mt
+            aws_region: eu-central-1
+            env: sandbox1
           - tenant: bn
             aws_region: ap-northeast-1
             env: sandbox1 
