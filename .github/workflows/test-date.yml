@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Get Current Datetime in UTC
         run: |
-            current_datetime=$(date +%d/%m/%Y %H:%M:%S)
-            echo $current_datetime
-            echo "::set-output name=date::$(date -d "($current_datetime) +5mins" '+%Y-%m-%d %H:%M:%S')"
+            current_datetime_plus_five_mins=$(gdate -d '+5 mins' -u)
+            echo $current_datetime_plus_five_mins
+            echo "::set-output name=date::$current_datetime_plus_five_mins
       
