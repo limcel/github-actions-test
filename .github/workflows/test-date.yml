@@ -4,13 +4,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  trigger-deploy-to-prods:
+  test-datetime:
     runs-on: ubuntu-20.04
     steps:
       - name: Get Current Datetime in UTC
         run: |
             current_datetime=$(date +%d/%m/%Y %H:%M:%S)
             echo $current_datetime
-            date -d "($current_datetime) +5mins" +%d/%m/%Y %H:%M:%S
-            echo "::set-output name=date::$(date -d "($current_datetime) +5mins" +%d/%m/%Y %H:%M:%S)"
+            echo "::set-output name=date::$(date -d "($current_datetime) +5mins" '+%Y-%m-%d %H:%M:%S')"
       
